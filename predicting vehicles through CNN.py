@@ -73,4 +73,4 @@ array([[3],
 [6]], dtype=uint8)
 
 # above all are perfectly predicted (y_pred[:5] exactly matched with y_test[:5])
-
+##Here it is predicted with perfect accuracy i.e is 80.68% Training, Testing 71.75%
