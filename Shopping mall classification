@@ -70,4 +70,4 @@ plt.matshow(x_test[0])
 k = accuracy_score(y_predicted,y_test)
 print(k)
 
-# if you any doubts regarding this.. you can contact me......                         sivasaineeli.ss@gmail.com
+# if you have any doubts regarding this.. you can contact me......                         sivasaineeli.ss@gmail.com
