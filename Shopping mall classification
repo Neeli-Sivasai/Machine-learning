@@ -33,6 +33,15 @@ classes = ['T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', 'Shirt', 
 #if we print y_train[0], we will get 9 and if we plot it we will get the image of ankle boot. so here Ankle boot = 9 and i.e T- shirt = 0, Trouser = 1 and so on...
 
 
+
+#using train test split, lets split the data to make the data size under 10000, to make our fresh x_train, x_test etc
+#here x_test size is 10000 lets make it under 1000 , (here x_test size is 10000, inorder to make it under 1000 see below code)
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_test, y_test, test_size = 0.9001, random_state = 42)
+
+#checking train size and test size, here you can see our x_train is under 1000 i.e 999 
+print(x_train.shape, x_test.shape, y_train.shape, y_test.shape)
+
 #Building the model
 model = Sequential()
 model.add(Flatten(input_shape = (28,28)))
@@ -57,9 +66,8 @@ y_predicted = [np.argmax(element) for element in y_predict]
 plt.matshow(x_test[0])
 #if we print y_predicted[0] it gives '9' and if we print(y_test[0]) it gives as '9' as well...  so its predicted correctly of the 1st data of x_test
 
-#now calculating accuracy
-accuracy_score(y_predicted,y_test)
- 
+#now calculating accuracy, lets check accuracy results on remaining 9000 data in x_test inintially......
+k = accuracy_score(y_predicted,y_test)
+print(k)
 
-
-
+# if you any doubts regarding this.. you can contact me......                         sivasaineeli.ss@gmail.com
