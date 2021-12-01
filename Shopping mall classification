@@ -25,7 +25,8 @@ x_test_reshaped = x_test.reshape(10000, 784)
 x_train = x_train/255
 x_test = x_test/255
 
-#lets plot the visualzation of an x_train_reshaped after it gets reshaped from pixel range from 0 to 255  to 0 to 1
+#lets plot the visualzation of an x_train_reshaped after it gets reshaped from pixel range from 0 to 255
+#here below chart gives number of pixels with that given range from 0 to 255
 plt.hist(x_train_reshaped[0])
 
 #lets plot image
