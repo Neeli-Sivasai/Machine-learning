@@ -1,0 +1,65 @@
+#In this project we will classify 'T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', 'Shirt', 'Sneaker', 'Boot', 'Ankle boot'.
+
+
+import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
+import matplotlib.pyplot as plt
+import numpy as np
+from keras.layers.core import Dropout, Activation, Dense, Flatten
+from keras.models import Sequential
+from sklearn.metrics import accuracy_score
+
+(x_train, y_train), (x_test,y_test) = datasets.fashion_mnist.load_data()
+
+#to see shape of the data 
+# x_train.shape, x_test.shape, y_train.shape, y_test.shape
+
+#reshaping the data to single dimension
+x_train_reshaped = x_train.resahpe(60000, 784)
+x_test_reshaped = x_test.reshape(10000, 784)
+
+#to get RGB pixel value in range from 0 to 1 let divide them by 255
+x_train = x_train/255
+x_test = x_test/255
+
+#lets plot the the visualzation of an x_train
+plt.hist(x_train_reshaped[0])
+
+#lets plot image
+plt.imshow(x_train[0])
+
+#dividing into classes
+classes = ['T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', 'Shirt', 'Sneaker', 'Boot', 'Ankle boot']
+#if we print y_train[0], we will get 9 and if we plot it we will get the image of ankle boot. so here Ankle boot = 9 and i.e T- shirt = 0, Trouser = 1 and so on...
+
+
+#Building the model
+model = Sequential()
+model.add(Flatten(input_shape = (28,28)))
+model.add(Dense(150))
+model.add(Activation('relu'))
+model.add(Dense(50))
+model.add(Activation('relu'))
+
+model.add(Dense(10))
+model.add(Activation('softmax'))
+
+model.compile(loss = "sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
+
+#fitting model
+model.fit(x_train,y_train, epochs=10)
+
+#making predictions
+y_predict = model.predict(x_test)
+y_predicted = [np.argmax(element) for element in y_predict]
+
+#the below plot shows ankle boot i.e is 9
+plt.matshow(x_test[0])
+#if we print y_predicted[0] it gives '9' and if we print(y_test[0]) it gives as '9' as well...  so its predicted correctly of the 1st data of x_test
+
+#now calculating accuracy
+accuracy_score(y_predicted,y_test)
+ 
+
+
+
